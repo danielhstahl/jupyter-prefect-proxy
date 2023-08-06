@@ -21,7 +21,7 @@ def setup_prefect():
 
     return {
         "command": _prefect_command,
-        "environment": {"PREFECT_UI_API_URL": "{base_url}/api"},
+        #"environment": {"PREFECT_UI_API_URL": "{base_url}/api"},
         "new_browser_tab": True,
         #"absolute_url": False,
         "port": PORT, # default for prefect
