@@ -9,14 +9,14 @@ import shutil
 
 
 def setup_prefect():
-    def _prefect_command():
+    def _prefect_command(port):
         full_path = shutil.which("prefect")
         if not full_path:
             raise FileNotFoundError("Can not find Prefect executable in $PATH")
-        return ["prefect", "server", "start"]
+        return ["prefect", "server", "start", "--port", port]
 
     return {
-        "command": _prefect_command(),
+        "command": _prefect_command,
         "environment": {},
         "launcher_entry": {
             "title": "prefect",

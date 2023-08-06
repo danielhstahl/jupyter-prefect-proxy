@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="jupyter-prefect-proxy",
-    version="1.0dev",
+    version="1.1dev",
     url="https://github.com/danielhstahl/jupyter-prefect-proxy",
     author="Daniel Stahl",
     description="danstahl1138@gmail.com",
