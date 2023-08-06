@@ -10,7 +10,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel("INFO")
-
+PORT=4200
 def setup_prefect():
     def _prefect_command(port, base_url): 
         logger.info(f"Using base_url {base_url} and port {port}")
@@ -22,8 +22,9 @@ def setup_prefect():
     return {
         "command": _prefect_command,
         "environment": {"PREFECT_UI_API_URL": "{base_url}/api"},
+        "new_browser_tab": True,
         #"absolute_url": False,
-        "port": 4200, # default for prefect
+        "port": PORT, # default for prefect
         "launcher_entry": {
             "title": "prefect",
             "icon_path": os.path.join(
