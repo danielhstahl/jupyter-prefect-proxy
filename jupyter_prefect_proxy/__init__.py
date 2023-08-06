@@ -13,7 +13,7 @@ def setup_prefect():
         full_path = shutil.which("prefect")
         if not full_path:
             raise FileNotFoundError("Can not find Prefect executable in $PATH")
-        return ["prefect", "server", "start", "--port", port]
+        return ["prefect", "server", "start", "--port", str(port)]
 
     return {
         "command": _prefect_command,
