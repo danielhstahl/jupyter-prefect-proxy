@@ -9,7 +9,8 @@ import shutil
 
 
 def setup_prefect():
-    def _prefect_command(port):
+    def _prefect_command(port, base_url): 
+        print("this is the base url: "+base_url)
         full_path = shutil.which("prefect")
         if not full_path:
             raise FileNotFoundError("Can not find Prefect executable in $PATH")
@@ -17,7 +18,9 @@ def setup_prefect():
 
     return {
         "command": _prefect_command,
-        "environment": {},
+        "environment": {"PREFECT_UI_API_URL": "{base_url}/api"},
+        "absolute_url": False,
+        "port": 4200, # default for prefect
         "launcher_entry": {
             "title": "prefect",
             "icon_path": os.path.join(
