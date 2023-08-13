@@ -9,7 +9,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     keywords=["Jupyter", "Prefect"],
     classifiers=["Framework :: Jupyter"],
-    install_requires=["jupyter-server-proxy", "prefect"],
+    install_requires=["jupyter-server-proxy"],
     entry_points={
         "jupyter_serverproxy_servers": [
             "prefect = jupyter_prefect_proxy:setup_prefect",
