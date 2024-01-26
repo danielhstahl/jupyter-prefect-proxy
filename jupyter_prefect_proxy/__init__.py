@@ -12,20 +12,30 @@ logger = logging.getLogger(__name__)
 logger.setLevel("INFO")
 
 PORT = 4200
+
+
 def setup_prefect():
-    def _prefect_command(port, base_url): 
+    def _prefect_command(port, base_url):
+        print("PLEASE PRINT", base_url)
         logger.info(f"Using base_url {base_url} and port {port}")
         full_path = shutil.which("prefect")
         if not full_path:
             raise FileNotFoundError("Can not find Prefect executable in $PATH")
         return ["prefect", "server", "start", "--port", str(port)]
 
+    def _environment(port, base_url):
+        logger.info(f"Environment hook: Using base_url {base_url} and port {port}")
+        return {
+            "PREFECT_UI_SERVE_BASE": f"{base_url}prefect",
+            "PREFECT_UI_API_URL": f"{base_url}prefect/api",
+        }
+
     return {
         "command": _prefect_command,
-        "environment": {"PREFECT_UI_SERVE_BASE": "{base_url}"}, 
+        "environment": _environment,
         "new_browser_tab": False,
-        #"absolute_url": False,
-        "port": PORT, # default for prefect
+        "absolute_url": True,
+        "port": PORT,  # default for prefect
         "timeout": 30,
         "launcher_entry": {
             "title": "prefect",
